@@ -1,0 +1,7 @@
+version: '3'
+services:
+  foglamp-gui:
+    build: .
+    ports:
+     - "80:80"
+  
