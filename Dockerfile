@@ -12,6 +12,7 @@ RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 RUN git clone https://github.com/foglamp/foglamp-gui.git \
     && cd foglamp-gui \
+    && git checkout v1.5.2 \
     # Move our files into directory name "app"
     && cp /usr/src/app/foglamp-gui/package*.json /usr/src/app/ \
     && npm install @angular/cli@latest -g \
@@ -21,9 +22,8 @@ RUN git clone https://github.com/foglamp/foglamp-gui.git \
 RUN mv foglamp-gui/* /usr/src/app
 
 # Build with $env variable from outside
-RUN yarn upgrade 
-RUN ng build --prod
-
+# RUN yarn upgrade 
+RUN ./build
 
 # Build a small nginx image with static website
 FROM nginx:alpine
